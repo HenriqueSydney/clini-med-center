@@ -51,13 +51,22 @@ export async function fetchUserAppointments<
   return sortedAppointments
 }
 
-interface ExtendedProfessionalAppointment extends ProfessionalAppointment {
+interface IGetAppointment {
+  id: string
+  appointmentDate: Date
+  observation: string | null
+  name: string | null
+  cpf: string | null
+  createdAt: Date
+  updatedAt: Date
+  userId: string
+  ProfessionalId: string
   professional: Professional
 }
 
 export async function getAppointment(
   appointmentId: string,
-): Promise<ExtendedProfessionalAppointment | null> {
+): Promise<IGetAppointment | null> {
   const appointment = await prisma.professionalAppointment.findUnique({
     include: {
       professional: true,
