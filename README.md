@@ -7,7 +7,7 @@ Bem-vindo ao Clini Med Center! Este projeto oferece uma solução completa para 
 1. Clone este repositório:
 
 ```bash
-git clone https://github.com/seu-usuario/clini-med-center.git
+git clone https://github.com/HenriqueSydney/clini-med-center.git
 ```
 
 2. Clone este repositório:
@@ -25,6 +25,7 @@ O arquivo env.example demonstra as variáveis necessárias.
 Para configurar e obter as variáveis referentes ao Google Provider, sigas as orientações do Next Auth: [Next Auth - Google Provider](https://next-auth.js.org/providers/google)
 
 5. Verifique as configurações do docker-compose.yml, especificadamente, quanto a porta destinada a o Postgres e ajuste, se for o caso, a variável DATABASE_URL do .env.
+**Atenção** Para testar a funcionalidade de criação de profissionais e exames, é necessário configurar a variável de ambiente ADMIN_EMAIL do .env, com seu email do gmail.
 
 6. Execute o docker-compose.yml
 ```bash

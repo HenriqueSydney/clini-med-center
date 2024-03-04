@@ -1,5 +1,7 @@
 import { Adapter } from 'next-auth/adapters'
 import prisma from '../prisma'
+import { Role } from '@prisma/client'
+import { env } from '@/env'
 
 export function PrismaAdapter(): Adapter {
   return {
@@ -26,11 +28,18 @@ export function PrismaAdapter(): Adapter {
         },
       })
 
+      let role: Role = Role.USER
+
+      if (email === env.ADMIN_EMAIL) {
+        role = Role.ADMIN
+      }
+
       if (userExists) {
         const updatedUser = await prisma.user.update({
           data: {
             email,
             name,
+            role,
           },
           where: { id: userExists.id },
         })
@@ -40,7 +49,7 @@ export function PrismaAdapter(): Adapter {
           emailVerified: null,
           id: updatedUser.id,
           name: updatedUser.name,
-          role: updatedUser.role,
+          role,
         }
       }
 
@@ -48,6 +57,7 @@ export function PrismaAdapter(): Adapter {
         data: {
           name,
           email,
+          role,
         },
       })
 
@@ -56,7 +66,7 @@ export function PrismaAdapter(): Adapter {
         emailVerified: null,
         id: newUser.id,
         name: newUser.name,
-        role: newUser.role,
+        role,
       }
     },
 
@@ -205,10 +215,16 @@ export function PrismaAdapter(): Adapter {
     },
 
     async updateUser(user) {
+      let role: Role = Role.USER
+
+      if (user.email === env.ADMIN_EMAIL) {
+        role = Role.ADMIN
+      }
       const updatedUser = await prisma.user.update({
         data: {
           email: user.email,
           name: user.name,
+          role,
         },
         where: { id: user.id },
       })

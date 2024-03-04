@@ -7,6 +7,7 @@ const envSchema = z.object({
   NEXTAUTH_SECRET: z.string(),
   GOOGLE_CLIENT_ID: z.string(),
   GOOGLE_CLIENT_SECRET: z.string(),
+  ADMIN_EMAIL: z.string(),
 })
 
 const _env = envSchema.safeParse(process.env)

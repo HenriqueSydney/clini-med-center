@@ -90,6 +90,22 @@ export const authOptions: NextAuthOptions = {
             throw new Error('User not registered')
           }
 
+          if (user.email === env.ADMIN_EMAIL && user.role !== Role.ADMIN) {
+            await prisma.user.update({
+              data: {
+                role: Role.ADMIN,
+              },
+              where: { id: user.id },
+            })
+
+            return {
+              email: profile.email,
+              id: profile.sub,
+              name: profile.name,
+              role: Role.ADMIN,
+            }
+          }
+
           return {
             email: profile.email,
             id: profile.sub,
