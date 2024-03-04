@@ -1,0 +1,71 @@
+.groupContainer {
+    display: flex;
+    flex-wrap: wrap;
+
+    &:not(.even){
+        flex-wrap: wrap-reverse;
+    }
+    
+    align-items: center;
+    justify-content: flex-start;
+    gap: 7rem;
+
+    margin-top: 1.5rem;
+   
+    flex: 0.4;
+
+    padding: 3rem 2rem;
+
+    img {
+        border-radius: 8px;
+
+        object-fit: cover;
+    }
+
+    @media (max-width: 80rem) {
+        margin-top: 1rem;
+        gap: 3rem; 
+        padding: 2rem 5rem;
+        
+        img {
+            min-width: 100%;
+            border-radius: 8px;
+
+            object-fit: cover;
+            object-position: 30% 30%;
+        }
+     }    
+
+    .infoGroup {
+        display: flex;
+        flex-direction: column;
+        
+        gap: 0.5rem;
+
+        h3 {
+            font-size: 3rem;
+        }
+
+        strong {
+            font-size: 1.25rem;
+        }
+
+        span {
+            color: var(--gray-500);
+        }
+
+        a {
+            margin-top: 1rem;
+            color: var(--green-300);
+
+            transition: 0.2s color;
+
+            &:hover {
+                text-decoration: underline;
+                color: var(--green-700);
+            }
+            
+        }
+    }        
+
+}

@@ -1,0 +1,47 @@
+.container {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: flex-start;
+  
+  background: var(--gray-100);
+  border: 0;
+  border-bottom: 1px solid var(--gray-700);
+ 
+  font-size: 1rem;
+  color: var(--gray-700);
+
+  padding: 0.75rem 0.75rem 0;   
+
+  cursor: pointer; 
+
+
+  &.input-error {
+    border-color: var(--red-500);
+    box-shadow: 0px 5px 5px -5px var(--red-500);
+  }
+
+  
+  .label-container {
+    width: 100%;
+    display: flex;  
+
+    flex: 1;     
+
+    align-items: center;
+    justify-content: flex-start;
+
+    gap: 0.5rem;     
+  
+    label {
+        pointer-events: none;
+    }
+   
+  }
+
+}

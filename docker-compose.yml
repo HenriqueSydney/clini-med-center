@@ -1,0 +1,20 @@
+version: "3.9"
+
+services:
+  database:
+    image: postgres
+    container_name: database_clini_med
+    restart: always
+    ports:
+      - 5433:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=clini-med-center-db
+    volumes:
+      - pgdata:/data/postgres
+      - ./init-scripts:/docker-entrypoint-initdb.d
+  
+volumes:
+  pgdata:
+    driver: local

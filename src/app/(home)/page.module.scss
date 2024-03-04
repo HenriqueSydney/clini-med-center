@@ -1,0 +1,124 @@
+.container {
+    max-width: 100vw;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    
+    position: relative;
+
+    &::after {
+        content: "";
+        position: absolute;
+        top: 500px;
+        right: 0;
+        bottom: 0;
+        left: 0;
+
+        width: 100%;
+
+        border-radius: 600px 0  0 0;
+
+        background: var(--gray-100);
+        pointer-events: none; 
+
+        
+    }
+
+    @media (max-width:  90rem) {
+        &::after {
+            display: none;
+        }
+     }
+
+    .imageContainer {
+        width: 100%;
+        position: relative;
+        max-height: 1000px;
+        height: 1000px;
+
+        img {
+            object-fit: cover;
+            object-position: 70% 50%;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.5); 
+            pointer-events: none; 
+            max-height: 1000px;
+        }
+
+        h1 {
+            position: absolute;
+            transform: translateX(-50%) ;
+            top: 10rem;
+            left: 50%;
+            
+            font-family: 'Dancing_Script';
+            font-size: 5rem;
+            color: var(--gray-100);
+            text-align: center;
+            
+            z-index: 3;        
+        }
+
+        @media (max-width:  90rem) {
+            max-height: 400px;     
+            height: 400px;      
+            img {         
+                object-position: 50%;                
+            }
+
+            &::after {
+                max-height: 400px;
+            }
+
+            h1{
+                top:5rem
+            }
+         }
+    }
+    
+
+    .sectionContainer{
+        max-width: 90rem;
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        justify-content: center;
+        align-items: center;
+
+        z-index: 2;        
+
+        margin-top: -27rem;   
+
+               
+        @media (max-width:  90rem) {
+            margin-top: 5rem;   
+        }
+        
+        
+        .green {
+            color: var(--green-500);
+
+        }
+
+        .red {
+            color: var(--red-500)
+        }
+
+
+        
+
+    }
+}

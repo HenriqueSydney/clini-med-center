@@ -1,0 +1,43 @@
+.container {
+   max-width: 80rem;
+   width: 100%;
+
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+
+   padding: 0 2rem;
+
+   .filterContainer{
+    width: 25rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+   }
+
+   .cardContainer {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+   }
+
+   .loadingContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2rem;
+   }
+
+   .emptyContainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+   }
+   
+}

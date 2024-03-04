@@ -1,0 +1,133 @@
+.reviewContainer {
+    max-width: 100vw;           
+    width: 100vw;
+    min-height: 330px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    gap: 10rem;
+
+    margin: 3rem 0;
+
+    padding: 3rem 2rem;
+    
+
+    background: rgba(0, 0, 0, 0.7);
+
+    @media (max-width: 60rem) {
+       gap: 3rem;               
+    }
+
+
+    .reviewTitleAndInfo {
+        flex: 0.5;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 2rem;
+        
+        h3 {
+            font-size: 3rem;
+            color: var(--gray-100);
+        }
+
+        span {
+            color: var(--gray-100);
+            
+        }
+
+        @media (max-width: 60rem) {
+            flex: 1;           
+         }
+   
+
+        .reviewerAvatars {
+            height: 100%;
+
+            display: flex;       
+            align-items: center;
+
+            gap: 1rem;
+            
+            position: relative;
+
+            img {
+                border-radius: 50%;                       
+
+                &:not(:first-of-type){
+                    margin-left: -41px;
+                }
+            }
+
+            strong {
+                color: var(--gray-100);
+            }
+
+            
+        }
+    }
+
+    .review {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        border: 1px solid var(--gray-700);
+        border-radius: 8px;
+
+        padding: 1rem;
+
+        background: var(--gray-100);
+
+        .quote {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding-right: 2rem;
+
+            .starContainer {
+                svg {
+                    color: var(--yellow)
+                }
+            }
+        }
+
+        .reviewText {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0 2rem;
+        }
+
+        .quoteRight {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding-left: 2rem;
+
+            .reviewer {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                img {
+                    border-radius: 50%;
+                }
+
+                span {
+                    font-size: 0.75;
+                    color: var(--gray-500)
+                }
+            }
+            
+        }
+    }
+
+}

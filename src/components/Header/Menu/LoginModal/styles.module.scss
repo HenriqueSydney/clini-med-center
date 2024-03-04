@@ -1,0 +1,27 @@
+
+.container {
+  margin-top: 1rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .registerContainer{
+    display: flex;
+    flex-wrap: wrap;
+
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    gap: 0.25rem;
+
+    margin: 0.5rem;
+
+    a {
+      text-decoration: underline;
+    }
+  }
+
+}

@@ -1,0 +1,60 @@
+.container {
+    max-width: 100vw;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin-top: -0.5rem;
+
+    @media (max-width: 70rem) {   
+        grid-template-columns: 1fr;
+    }
+
+
+    
+    section {
+        display: flex;
+        flex-direction: column;
+
+        gap: 2rem;
+
+        padding: 2rem 20rem 2rem 3rem;
+
+        @media (max-width: 70rem) {   
+            padding: 2rem 1rem 2rem 3rem;     
+        }
+
+        @media (max-width: 54.736rem) {
+            width: 100%; 
+            padding: 2rem 2rem;      
+        }
+
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        .phrase {
+            display: flex;
+
+            align-items: center;
+
+            gap: 1rem;
+
+            svg {
+                color: var(--green-500);
+            }
+
+            strong {
+                font-size: 1.25rem;
+            }
+        }
+
+        .loginContainer{
+            width: 300px;
+        }
+
+               
+    }
+
+    
+}
