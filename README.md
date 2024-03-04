@@ -31,13 +31,20 @@ Para configurar e obter as variáveis referentes ao Google Provider, sigas as or
 ```bash
 sudo docker-compose up
 ```
+7. Configure o prisma. Atualize o Model prisma > schema.prisma (projeto está configurado para publicação na Vercel):
+```JavaScript
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
 
-7. Execute as migrations do Prisma:
+8. Execute as migrations do Prisma:
 ```bash
 npm run prisma:sync
 ```
 
-8. Execute o projeto:
+9. Execute o projeto:
 ```bash
 npm run dev
 ```
