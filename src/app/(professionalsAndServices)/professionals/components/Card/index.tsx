@@ -11,7 +11,7 @@ import medico from '@/../public/medico3.jpg'
 
 interface AccommodationCardProps {
   data: Professional
-  oddOrEven: 'odd' | 'even'
+  oddOrEven: 'odd' | 'even' | 'even2'
 }
 
 export function Card({ data }: AccommodationCardProps) {
