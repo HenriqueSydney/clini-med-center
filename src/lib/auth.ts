@@ -50,6 +50,7 @@ export const authOptions: NextAuthOptions = {
       }
     },
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async signIn(user) {
       return true
     },
