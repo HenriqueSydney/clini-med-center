@@ -5,17 +5,17 @@ generator client {
 }
 
 // comente o código abaixo
-datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
-}
+//datasource db {
+// provider  = "postgresql"
+//url       = env("POSTGRES_PRISMA_URL")
+//directUrl = env("POSTGRES_URL_NON_POOLING") // uses a direct connection
+//}
 
 // Descomente o abaixo
-//datasource db {
-//  provider = "postgresql"
-//  url      = env("DATABASE_URL")
-//}
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
 
 model Account {
   id                String  @id @default(cuid())
@@ -75,16 +75,17 @@ enum Type {
 }
 
 model Professional {
-  id             String  @id @default(uuid())
-  type           Type    @default(PROFESSIONAL)
-  name           String
-  specialty      String
-  description    String
-  email          String
-  phone          String
-  phrase         String
-  qualifications String
-  photo_name     String?
+  id              String  @id @default(uuid())
+  type            Type    @default(PROFESSIONAL)
+  name            String
+  specialty       String
+  description     String
+  email           String
+  phone           String
+  phrase          String
+  qualifications  String
+  photo_name      String?
+  photo_extension String?
 
   createdAt DateTime @default(now()) @map(name: "created_at")
   updatedAt DateTime @updatedAt @map(name: "updated_at")

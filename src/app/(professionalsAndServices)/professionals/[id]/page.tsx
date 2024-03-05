@@ -34,6 +34,7 @@ export default async function Professional({ params: { id } }: IProfessional) {
     <div className={styles.container}>
       <AsideDoctorInfo
         photo_name={resource.photo_name}
+        photo_extension={resource.photo_extension}
         name={resource.name}
         id={resource.id}
         specialty={resource.specialty}

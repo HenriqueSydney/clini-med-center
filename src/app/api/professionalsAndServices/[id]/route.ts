@@ -1,6 +1,3 @@
-import { randomUUID } from 'node:crypto'
-import { writeFile } from 'node:fs/promises'
-
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 
@@ -35,10 +32,12 @@ export async function PUT(
     const formData = await request.formData()
     const file: File | null = formData.get('file') as unknown as File
     let photo_name = ''
+    let extension = null
     if (!file) {
       photo_name = professional.photo_name ?? ''
+      extension = professional.photo_extension ?? ''
     } else {
-      const bytes = await file.arrayBuffer()
+      /* const bytes = await file.arrayBuffer()
       const buffer = Buffer.from(bytes)
 
       const professionalName = formData.get('professional') as string
@@ -46,7 +45,10 @@ export async function PUT(
       photo_name = `${professionalName}-${randomUUID()}.${extension}`
       const path = `./public/images/${photo_name}`
 
-      await writeFile(path, buffer)
+      await writeFile(path, buffer) */
+      extension = file.name.split('.').pop()
+      const fileBuffer = Buffer.from(await file.arrayBuffer())
+      photo_name = fileBuffer.toString('base64')
     }
 
     const professionalOrService = await prisma.professional.update({
@@ -61,6 +63,7 @@ export async function PUT(
         phone: formData.get('phone') as string,
         qualifications: formData.get('qualifications') as string,
         photo_name,
+        photo_extension: extension,
       },
       where: { id },
     })

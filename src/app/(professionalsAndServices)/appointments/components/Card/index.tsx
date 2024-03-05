@@ -34,7 +34,9 @@ export function Card<T extends IFetchUserAppointmentsResponse>({
         <div className={styles.imageContainer}>
           <Image
             src={
-              resource.photo_name ? `/images/${resource.photo_name}` : medico
+              resource.photo_name
+                ? `data:image/${resource.photo_extension};base64,${resource.photo_name}`
+                : medico
             }
             alt="Foto do Médico"
             fill={true}

@@ -20,6 +20,7 @@ import { AdminActions } from '../professionals/[id]/components/AdminActions/Admi
 
 interface IAsideDoctorInfo {
   photo_name: string | null
+  photo_extension: string | null
   name: string
   id: string
   specialty: string
@@ -31,6 +32,7 @@ interface IAsideDoctorInfo {
 
 export function AsideDoctorInfo({
   photo_name,
+  photo_extension,
   name,
   id,
   specialty,
@@ -43,7 +45,11 @@ export function AsideDoctorInfo({
     <aside className={styles.container}>
       <div className={styles.imageContainer}>
         <Image
-          src={photo_name ? `/images/${photo_name}` : medico1}
+          src={
+            photo_name
+              ? `data:image/${photo_extension};base64,${photo_name}`
+              : medico1
+          }
           alt="Imagem do Médico"
           fill={true}
           sizes="(max-width: 876px) 100%"

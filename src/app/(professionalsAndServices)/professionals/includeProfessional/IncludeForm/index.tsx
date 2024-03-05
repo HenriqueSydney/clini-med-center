@@ -366,7 +366,7 @@ export function IncludeForm({ professional }: IIncludeForm) {
         <div className={styles.imageContainer}>
           <div className={styles.image}>
             <Image
-              src={`/images/${professional.photo_name}`}
+              src={`data:image/${professional.photo_extension};base64,${professional.photo_name}`}
               alt="Foto do Médico"
               sizes="(max-width: 876px) 100%"
               fill={true}

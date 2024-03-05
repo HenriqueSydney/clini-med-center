@@ -76,7 +76,6 @@ export function AppointmentForm({ id, form }: IAppointmentForm) {
   const registerWithMask = useHookFormMask(register)
 
   function onDatePickerChange(date: Date | null) {
-    console.log(date)
     if (!date) {
       resetField('appointmentDate')
       return

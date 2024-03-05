@@ -1,6 +1,3 @@
-import { writeFile } from 'node:fs/promises'
-import { randomUUID } from 'node:crypto'
-
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 
@@ -31,7 +28,7 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false })
     }
 
-    const bytes = await file.arrayBuffer()
+    /* const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
     const professionalName = formData.get('professional') as string
@@ -39,7 +36,11 @@ export async function POST(request: NextRequest) {
     const photo_name = `${professionalName}-${randomUUID()}.${extension}`
     const path = `./public/images/${photo_name}`
 
-    await writeFile(path, buffer)
+    await writeFile(path, buffer) */
+    const extension = file.name.split('.').pop()
+    const fileBuffer = Buffer.from(await file.arrayBuffer())
+    const fileData = fileBuffer.toString('base64')
+
     const professionalOrService = await prisma.professional.create({
       data: {
         type:
@@ -51,7 +52,8 @@ export async function POST(request: NextRequest) {
         email: formData.get('email') as string,
         phone: formData.get('phone') as string,
         qualifications: formData.get('qualifications') as string,
-        photo_name,
+        photo_name: fileData,
+        photo_extension: extension,
       },
     })
     revalidatePath('/(professionalsAndServices)/professionals/[id]', 'page')

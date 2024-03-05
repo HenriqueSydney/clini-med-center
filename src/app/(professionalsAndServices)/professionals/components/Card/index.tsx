@@ -15,13 +15,25 @@ interface AccommodationCardProps {
 }
 
 export function Card({ data }: AccommodationCardProps) {
-  const { name, id, description, phrase, specialty, photo_name } = data
+  const {
+    name,
+    id,
+    description,
+    phrase,
+    specialty,
+    photo_name,
+    photo_extension,
+  } = data
 
   return (
     <Link href={`/professionals/${id}`} passHref className={styles.container}>
       <div className={styles.imagemContainer}>
         <Image
-          src={photo_name ? `/images/${photo_name}` : medico}
+          src={
+            photo_name
+              ? `data:image/${photo_extension};base64,${photo_name}`
+              : medico
+          }
           alt="Imagem do médico"
           fill={true}
           sizes="(max-width: 876px) 100%"
