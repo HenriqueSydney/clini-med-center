@@ -6,6 +6,9 @@ import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 import { revalidatePath } from 'next/cache'
 
+import dayjs from 'dayjs'
+import 'dayjs/locale/pt-br'
+
 export async function POST(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions)
@@ -23,9 +26,13 @@ export async function POST(request: NextRequest) {
       data: { appointment },
     } = await request.json()
 
-    const appointmentDate = new Date(appointment.appointmentDate)
-
-    const dayOfTheWeek = appointmentDate.getDay()
+    dayjs.locale('pt-Br')
+    const day = dayjs(appointment.appointmentDate)
+    const hourOfTheDay = day.hour()
+    const startOfDay = day.startOf('day').toDate()
+    const endOfDay = day.endOf('day').toDate()
+    const appointmentDate = day.toISOString()
+    const dayOfTheWeek = day.day()
 
     if (dayOfTheWeek === 0) {
       return NextResponse.json(
@@ -35,8 +42,6 @@ export async function POST(request: NextRequest) {
         { status: 400 },
       )
     }
-
-    const hourOfTheDay = appointmentDate.getHours()
 
     if (dayOfTheWeek === 6 && (hourOfTheDay < 8 || hourOfTheDay > 11)) {
       return NextResponse.json(
@@ -59,11 +64,7 @@ export async function POST(request: NextRequest) {
     }
 
     let newAppointment = null
-    const startOfDay = new Date(appointmentDate)
-    startOfDay.setHours(0, 0, 0, 0)
 
-    const endOfDay = new Date(appointmentDate)
-    endOfDay.setHours(23, 59, 59, 999)
     const professionalAppointmentsOfTheDay =
       await prisma.professionalAppointment.findMany({
         where: {
@@ -74,17 +75,17 @@ export async function POST(request: NextRequest) {
           },
         },
       })
-
+    const oneHourInMillis = 60 * 60 * 1000
     const hasConflict = professionalAppointmentsOfTheDay.some((appointment) => {
       const existingAppointmentDate = appointment.appointmentDate
 
       const isOverlap =
-        (existingAppointmentDate.getTime() >= appointmentDate.getTime() &&
-          existingAppointmentDate.getTime() <
-            appointmentDate.getTime() + 60 * 60 * 1000) ||
-        (existingAppointmentDate.getTime() >
-          appointmentDate.getTime() - 60 * 60 * 1000 &&
-          existingAppointmentDate.getTime() <= appointmentDate.getTime())
+        (dayjs(existingAppointmentDate).isAfter(appointmentDate) &&
+          dayjs(existingAppointmentDate).isBefore(day.add(oneHourInMillis))) ||
+        (dayjs(existingAppointmentDate).isAfter(
+          day.subtract(oneHourInMillis),
+        ) &&
+          dayjs(existingAppointmentDate).isBefore(appointmentDate))
 
       return isOverlap
     })
@@ -113,12 +114,14 @@ export async function POST(request: NextRequest) {
         const existingAppointmentDate = appointment.appointmentDate
 
         const isOverlap =
-          (existingAppointmentDate.getTime() >= appointmentDate.getTime() &&
-            existingAppointmentDate.getTime() <
-              appointmentDate.getTime() + 60 * 60 * 1000) ||
-          (existingAppointmentDate.getTime() >
-            appointmentDate.getTime() - 60 * 60 * 1000 &&
-            existingAppointmentDate.getTime() <= appointmentDate.getTime())
+          (dayjs(existingAppointmentDate).isAfter(appointmentDate) &&
+            dayjs(existingAppointmentDate).isBefore(
+              day.add(oneHourInMillis),
+            )) ||
+          (dayjs(existingAppointmentDate).isAfter(
+            day.subtract(oneHourInMillis),
+          ) &&
+            dayjs(existingAppointmentDate).isBefore(appointmentDate))
 
         return isOverlap
       },

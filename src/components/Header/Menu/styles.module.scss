@@ -28,6 +28,10 @@
     font-size: 1rem;
     color: var(--gray-100);
 
+    svg{
+        color: var(--gray-100);
+    }
+
     cursor: pointer;
 
     transition: 0.2s background-color, 0.2s color;  
@@ -45,6 +49,15 @@
 }
 
 @media (max-width: 768px) {
+    .menu {
+        button {
+            color:  var(--gray-700);
+
+            &:hover{
+                background-color: var(--gray-300);
+            }
+        }
+    }
     .icons-container {
         height: fit-content;
     }
@@ -53,6 +66,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
     }
 
     .menu-items {
@@ -71,7 +85,6 @@
         flex-direction: column;
 
         border-radius: 6px 0 6px 6px;
-
 
         background:  var(--gray-100);
         box-shadow: 0 0 0.5rem var(--gray-500);

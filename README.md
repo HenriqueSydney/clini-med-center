@@ -2,6 +2,8 @@
 
 Bem-vindo ao Clini Med Center! Este projeto oferece uma solução completa para a gestão de consultas e exames em uma clínica de saúde. Desenvolvido utilizando Next.js, PostgreSQL, Prisma ORM, e diversas tecnologias modernas.
 
+[Link para Aplicação](https://clini-med-center.vercel.app/)
+
 ## Como Subir o Projeto
 
 1. Clone este repositório:
@@ -132,6 +134,15 @@ Possibilita o cancelamento de agendamentos por meio da identificação do pacien
 
 - **Restrição de Agendamento:**
     - Deve-se estar logado para realizar uma agendamento.
+
+## Backlogs sugestivos de ampliação do projeto
+- **Vinculação com Google Agenda ou outro aplicativo de Agenda**
+- **Funcionalidade de Avaliação da Consulta**
+- **Integração com API de avaliações do Google**
+- **Funcionalidade para que o Médico ou Responsável pelo Exame inclua informações sobre a consulta (como prescrição e outros. Necessidade de Criptografia)**
+- **Integração com CMS para atualização de dados relacionados à Clínica**
+- **Criação de uma espécie de Blog de Notícia, com integração com CMS**
+
 
 ## Observação
 

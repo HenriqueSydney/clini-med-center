@@ -10,18 +10,20 @@ a.container {
   background:  var(--gray-100);
   box-shadow: 0 0 0.5rem var(--gray-500);
 
-  padding: 0 1rem 0 0;
+  padding: 0 1rem 0.5rem 0 ;
 
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  overflow: hidden;
 
   cursor: pointer;
 
   @media (max-width: 54.736rem) {
-    height: 30rem; 
+    min-height: 30rem; 
 
     flex-direction: column;       
-
-    padding: 0;      
+    box-shadow: 0 0 0.5rem var(--gray-500), 0px 5px 10px rgba(0, 0, 0, 0.5) inset;
+    padding: 0;  
   }
 
   &:hover {    
@@ -35,6 +37,7 @@ a.container {
     height: 100%;
 
     @media (max-width: 54.736rem) {   
+      width: 100%;
       min-width:  100%;
       max-width:  100%;
       min-height: 15rem;

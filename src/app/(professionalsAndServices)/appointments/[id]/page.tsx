@@ -56,18 +56,22 @@ export default async function Professional({ params: { id } }: IProfessional) {
         user_role={session?.user.role}
       />
       <section>
-        <h2>Olá, {userName}! Deseje alterar sua consulta? </h2>
-        <strong>Atualize os dados pré preenchidos:</strong>
-        <AppointmentForm
-          id={resourceId}
-          form={{
-            appointmentId: id,
-            appointmentDate,
-            cpf: cpf ?? '',
-            name: name ?? '',
-            observation: observation ?? '',
-          }}
-        />
+        <div className={styles.formTitleContainer}>
+          <h2>Olá, {userName}! Deseje alterar sua consulta? </h2>
+          <strong>Atualize os dados pré preenchidos:</strong>
+        </div>
+        <div className={styles.formContainer}>
+          <AppointmentForm
+            id={resourceId}
+            form={{
+              appointmentId: id,
+              appointmentDate,
+              cpf: cpf ?? '',
+              name: name ?? '',
+              observation: observation ?? '',
+            }}
+          />
+        </div>
       </section>
     </div>
   )

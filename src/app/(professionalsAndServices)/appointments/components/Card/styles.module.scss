@@ -17,8 +17,11 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   
     @media (max-width: 54.736rem) {
+      width: 100%;
       flex-direction: column;       
-      padding: 0;    
+      padding-bottom:  1rem;
+      max-height: 600px;
+      height: 600px;
     }
   
     &:hover {    
@@ -106,9 +109,13 @@
     .buttonContainer {
       width: 100%;
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       justify-content: space-evenly;
       gap: 1rem;
+      @media (max-width: 40rem) {
+       flex-direction: column;
+      }
     }
   }
   

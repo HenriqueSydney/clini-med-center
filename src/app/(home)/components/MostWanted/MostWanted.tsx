@@ -44,6 +44,7 @@ export function MostWanted() {
 
   useEffect(() => {
     window.addEventListener('resize', atualizarTamanhoDaTela)
+    setTamanhoDaTela(window.innerWidth)
 
     return () => {
       window.removeEventListener('resize', atualizarTamanhoDaTela)

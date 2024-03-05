@@ -11,6 +11,10 @@
 
    .filterContainer{
       width: 25rem;
+
+      @media (max-width: 54.736rem) {
+         width: 100%;               
+       }
   
       display: flex;
       align-items: center;

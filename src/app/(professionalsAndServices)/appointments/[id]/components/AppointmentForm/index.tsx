@@ -87,11 +87,15 @@ export function AppointmentForm({ id, form }: IAppointmentForm) {
     const appointmentData = {
       id,
       ...data,
+      appointmentDate: data.appointmentDate.toLocaleString('en-US', {
+        timeZone: 'America/Sao_Paulo',
+      }),
     }
 
     try {
       let response = null
       let message = 'realizado'
+
       if (form) {
         response = await fetch(`/api/appointments/${form.appointmentId}`, {
           method: 'PUT',
