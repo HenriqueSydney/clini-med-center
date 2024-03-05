@@ -122,11 +122,11 @@ export function AsideDoctorInfo({
         <div className={styles.hr} />
         <div className={styles.workingDays}>
           <span>Segunda - Sexta</span>
-          <span>08:00 - 15:00</span>
+          <span>08:00 - 18:00</span>
         </div>
         <div className={styles.workingDays}>
           <span>Sab</span>
-          <span>08:00 - 11:00</span>
+          <span>08:00 - 12:00</span>
         </div>
       </div>
     </aside>

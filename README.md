@@ -12,7 +12,7 @@ Bem-vindo ao Clini Med Center! Este projeto oferece uma solução completa para 
 git clone https://github.com/HenriqueSydney/clini-med-center.git
 ```
 
-2. Clone este repositório:
+2. Acesse a pasta do projeto:
 ```bash
 cd clini-med-center
 ```

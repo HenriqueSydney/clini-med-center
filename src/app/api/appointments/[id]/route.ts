@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath } from 'next/cache'
 
+import * as zod from 'zod'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 
-import dayjs from 'dayjs'
-import 'dayjs/locale/pt-br'
-
 import prisma from '@/lib/prisma'
+import { validateAppointmentForm } from '../validateAppointmentForm/validateAppointmentForm'
+import { FormError } from '@/app/Errors/FormError'
 
 export async function PUT(
   request: NextRequest,
@@ -27,8 +27,16 @@ export async function PUT(
     }
 
     const {
-      data: { appointment },
+      data: { appointment: appointmentForm },
     } = await request.json()
+
+    const { appointment, appointmentDate } = await validateAppointmentForm(
+      appointmentForm,
+      id,
+    )
+
+    /* const appointment = appointmentFormSchema.parse(appointmentForm)
+
     dayjs.locale('pt-Br')
     const day = dayjs(appointment.appointmentDate)
     const hourOfTheDay = day.hour()
@@ -145,7 +153,7 @@ export async function PUT(
         { status: 400 },
       )
     }
-
+*/
     const updatedAppointment = await prisma.professionalAppointment.update({
       data: {
         ProfessionalId: appointment.id,
@@ -162,6 +170,28 @@ export async function PUT(
     revalidatePath('/', 'page')
     return NextResponse.json({ data: updatedAppointment }, { status: 200 })
   } catch (error) {
+    if (error instanceof zod.ZodError) {
+      let message = 'Identificado o(s) seguinte(s) erros de formulário:'
+      JSON.parse(error.message).forEach((err: { message: string }) => {
+        message = `${message} ${err.message};`
+      })
+
+      return NextResponse.json(
+        {
+          message,
+        },
+        { status: 400 },
+      )
+    }
+    if (error instanceof FormError) {
+      return NextResponse.json(
+        {
+          message: error.message,
+        },
+        { status: 400 },
+      )
+    }
+
     return NextResponse.json(
       {
         message:
