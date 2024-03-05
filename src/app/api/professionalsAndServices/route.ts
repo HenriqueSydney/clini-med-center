@@ -57,6 +57,7 @@ export async function POST(request: NextRequest) {
     revalidatePath('/(professionalsAndServices)/professionals/[id]', 'page')
     return NextResponse.json({ data: professionalOrService }, { status: 201 })
   } catch (error) {
+    console.error(error)
     return NextResponse.json(
       {
         message:
