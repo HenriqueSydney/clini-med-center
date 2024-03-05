@@ -91,7 +91,11 @@ export function AsideDoctorInfo({
           <h3>Qualificações</h3>
         </div>
         <div className={styles.hr} />
-        <span>{qualifications}</span>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: qualifications.replace(/\n/g, '<br>'),
+          }}
+        />
       </div>
 
       <div className={styles.info}>

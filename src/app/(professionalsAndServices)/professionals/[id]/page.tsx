@@ -49,7 +49,11 @@ export default async function Professional({ params: { id } }: IProfessional) {
           <FontAwesomeIcon icon={faQuoteLeft} size="2x" />
           <strong>{`"${resource.phrase}"`}</strong>
         </div>
-        <p>{resource.description}</p>
+        <p
+          dangerouslySetInnerHTML={{
+            __html: resource.description.replace(/\n/g, '<br>'),
+          }}
+        />
         {session && (
           <div className={styles.form}>
             <h2>É o que você está procurando? Agende uma consulta:</h2>
