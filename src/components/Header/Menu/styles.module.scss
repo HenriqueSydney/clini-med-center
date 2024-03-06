@@ -5,11 +5,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 4;
 }
 
 .menu-items {
     display: flex;
     list-style: none;
+    z-index: 4;
+    li {
+        button{
+            position: relative;
+            z-index: 4;
+        }
+      
+    }
+   
 }
 
 .menu-toggle{
